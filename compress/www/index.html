@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no,minimum-scale=1.0,maximum-scale=1.0">
+	<title>Document</title>
+	<link type="text/css" rel="stylesheet" href="css/reset.css">
+	<link type="text/css" rel="stylesheet" href="css/common.css">
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="fonts/iconfont.css">
+</head>
+<body>
+	<header>购物车</header>
+	<main>
+		<ul>
+			<li>
+				<h3>
+					<img src="images/tm.jpg" alt="">
+					<span>众阅大诚图书专营</span>
+					<i class="icon iconfont">&#xe8f1;</i>
+					<button class="btn1">领券</button>
+					<button class="del">删除</button>
+				</h3>
+				<div class="con">
+					<input type="checkbox" class="select">
+					<div class="product">
+						<div class="top">
+							<span>每1000减100，可跨店</span>
+							<a href="javascript:;">
+								去凑单
+								<i class="icon iconfont">&#xe8f1;</i>
+							</a>
+						</div>
+						<div class="discribe">
+							<img src="images/1.jpg" alt="">
+							<div class="right">
+								<p class="p_1">【618狂欢价】乔布斯传正版包邮，史蒂夫·乔布斯传神一样的男人</p>
+								<p class="p_2">已降￥2.60</p>
+								<p class="p_3">
+									<span class="price">
+										<b>￥20.3</b>
+										<span>￥59</span>
+									</span>
+									<span class="count">
+										<b class="reduce">-</b>
+										<strong>1</strong>
+										<b class="add">+</b>
+									</span>
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</li>
+			<li>
+				<h3>
+					<img src="images/tm.jpg" alt="">
+					<span>会飞数码专营店</span>
+					<i class="icon iconfont">&#xe8f1;</i>
+					<button class="btn1">领券</button>
+					<button class="del">删除</button>
+				</h3>
+				<div class="con">
+					<input type="checkbox" class="select">
+					<div class="product">
+						<div class="top">
+							<span>每1000减100，可跨店</span>
+							<a href="javascript:;">
+								去凑单
+								<i class="icon iconfont">&#xe8f1;</i>
+							</a>
+						</div>
+						<div class="discribe">
+							<img src="images/3.jpg" alt="">
+							<div class="right">
+								<p class="p_1">金属底盘 4色呼吸灯 牧马人3机械加重电竞无声静音优先宏鼠标</p>
+								<p class="p_2">已降￥9.00</p>
+								<p class="p_3">
+									<span class="price">
+										<b>￥16.9</b>
+										<span>￥49</span>
+									</span>
+									<span class="count">
+										<b class="reduce">-</b>
+										<strong>1</strong>
+										<b class="add">+</b>
+									</span>
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</li>
+			<li>
+				<h3>
+					<img src="images/tm.jpg" alt="">
+					<span>宏义运动专营店</span>
+					<i class="icon iconfont">&#xe8f1;</i>
+					<button class="btn1">领券</button>
+					<button class="del">删除</button>
+				</h3>
+				<div class="con">
+					<input type="checkbox" class="select">
+					<div class="product">
+						<div class="top">
+							<span>每1000减100，可跨店</span>
+							<a href="javascript:;">
+								去凑单
+								<i class="icon iconfont">&#xe8f1;</i>
+							</a>
+						</div>
+						<div class="discribe">
+							<img src="images/4.jpg" alt="">
+							<div class="right">
+								<p class="p_1">鸿星尔克篮球鞋 男鞋低帮夏季网面透气防滑耐磨战靴休闲运动鞋</p>
+								<p class="p_2">已降￥10.00</p>
+								<p class="p_3">
+									<span class="price">
+										<b>￥139</b>
+										<span>￥299</span>
+									</span>
+									<span class="count">
+										<b class="reduce">-</b>
+										<strong>1</strong>
+										<b class="add">+</b>
+									</span>
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</main>
+	<footer>
+		<input type="checkbox" id="all">
+		<label>全选</label>
+		<p>
+			<span>合计：<b>￥</b><b class="money">0</b></span>
+			<span>不含运费和进口税</span>
+		</p>
+		<button>结算(0)</button>
+	</footer>
+	<script type="text/javascript" src="js/zepto.min.js"></script>
+	<script type="text/javascript" src="js/touch.js"></script>
+	<script>
+		$('.reduce').on('touchend',function(){
+			var n=$(this).next().html()*1;
+			n--
+			if(n<0){
+				n=0;
+			}else{
+				counter($(this),false)
+			}
+			$(this).next().html(n)
+		})
+		$('.add').on('touchend',function(){
+			var n=$(this).prev().html()*1;
+			n++
+			$(this).prev().html(n)
+			counter($(this),true)
+		})
+		function counter(ele,flag){
+			var sel=ele.parents('.product').prev()
+			if(sel[0].checked){
+				var oldMoney=$('.money').text()*1,
+					price=ele.parent().prev().children('b').html().slice(1)*1
+				if(flag){
+					oldMoney+=price
+				}else{
+					oldMoney-=price
+				}
+				$('.money').html(oldMoney.toFixed(1))
+			}
+		}
+		$('ul').on('touchend','.select',function(){
+			var oldMoney=$('.money').text()*1
+			//console.log($(this).parents('li').index())
+			var price=$(this).next().find('.price b').text().slice(1),
+				number=$(this).next().find('strong').text()
+			if(!$(this)[0].checked){
+				oldMoney+=price*number
+			}else{
+				oldMoney-=price*number
+			}
+			$('.money').text(oldMoney.toFixed(1))
+		})
+		$('#all').on('touchend',function(){
+			//console.log($('.select:checked').length)
+			var num=0;
+			if(!$(this)[0].checked){
+				$('.select').attr('checked',true)
+				$.each($('.select'),function(i,item){
+					var price=$(item).next().find('.price b').text().slice(1),
+						number=$(item).next().find('strong').text()
+					num+=price*number;
+				})
+				$('footer .money').text(num)
+			}else{
+				$('.select').removeAttr('checked')
+				$('footer .money').text(0.0)
+				/*location.reload()*/
+			}
+		})
+		$('.del').on('touchend',function(){
+			$(this).parents('li').remove()
+		})
+	</script>
+</body>
+</html>

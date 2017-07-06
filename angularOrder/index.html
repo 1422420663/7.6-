@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Angular指令</title>
+	<style>
+		.red{
+			color: red;
+		}
+		.blue{
+			color: dodgerblue;
+		}
+	</style>
+</head>
+<body>
+<div ng-app="myApp">
+	<div ng-controller="loginCtrl">
+		<input type="text" placeholder="请输入用户名" ng-model="username">
+		<p>hello:{{username}}</p>
+		<!--ng-click-->
+		<input type="button" value="提交" ng-click="showname()">
+		<!--ng-bind-->
+		<p ng-bind="demoname"></p>
+	</div>
+	<div ng-controller="styleCtrl">
+		<!--ng-class-->
+		<div ng-class="red">this is ng-class</div>
+		<div ng-class="blue">this is ng-class</div>
+		<div ng-show="true">this is ng-show:true</div>
+		<div ng-hide="false">this is ng-hide:false</div>
+	</div>
+	<!--ng-repeat-->
+	<div ng-controller="arrCtrl">
+		<table>
+			<tr ng-repeat="item in arr">
+				<td>{{item.user}}</td><td>{{item.age}}</td>
+			</tr>
+		</table>
+		<select name="" id="">
+			<option ng-repeat="i in area" value="">{{i.city}}</option>
+		</select><br>
+		<select name="" id="" ng-repeat="i in area">
+			<option value="" ng-repeat="j in i.small">{{j}}</option>
+		</select>
+	</div>
+</div>
+<script type="text/javascript" src="js/angular.min.js"></script>
+<script>
+	var app=angular.module('myApp',[])
+	app.controller('loginCtrl',function($scope){
+		$scope.username='1505f';
+		$scope.demoname="this is ng-bind."
+		$scope.showname=function(){
+			console.log($scope.username)
+		}
+	})
+	app.controller('styleCtrl',function($scope){
+		$scope.red='red';
+		$scope.blue='blue';
+	})
+	app.controller('arrCtrl',function($scope){
+		$scope.arr=[
+			{
+				user:'张三',
+				age:23
+			},
+			{
+				user:'李四',
+				age:24
+			},{
+				user:'赵六',
+				age:25
+			}
+
+		];
+		$scope.area=[
+			{
+				city:'北京',
+				small:['上地','海淀','朝阳']
+			},
+			{
+				city:'上海',
+				small:['文怡花园','浦东','东方']
+			},
+			{
+				city:'西安',
+				small:['小寨','东三环','火车站']
+			}
+		]
+	})
+</script>
+</body>
+</html>
